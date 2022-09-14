@@ -24,7 +24,7 @@ public class Sala {
     @Column
     private int capacidad;
     @Column
-    private int costoPorDia;
+    private int costopordia;
     //private ArrayList<Evento> eventos = new ArrayList<>();
 
 }

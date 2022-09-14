@@ -22,7 +22,7 @@ public class Interesado {
     @Column
     private String tipodocumento;
     @Column
-    private int nrodocumento;
+    private String nrodocumento;
     @Column
     private String apellido;
     @Column
@@ -30,7 +30,7 @@ public class Interesado {
     @Column
     private String mail;
     @Column
-    private int telefono;
+    private String telefono;
 
     //private ArrayList<Evento> eventos = new ArrayList<>();
 

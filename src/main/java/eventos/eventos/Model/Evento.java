@@ -1,13 +1,17 @@
 package eventos.eventos.Model;
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @Builder
@@ -27,8 +31,23 @@ public class Evento {
     private Date fechaevento;
     @Column
     private int cantpersonas;
-   // private Interesado interesado;
-    //private Sala sala;
-    //private ArrayList<TipoRecurso> tipoRecursos = new ArrayList<TipoRecurso>();
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idinteresado")
+    @NotNull
+    private Interesado interesado;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "idsala")
+    @NotNull
+    private Sala sala;
+
+    @JoinTable(name = "evento_tiporecurso",
+            joinColumns = @JoinColumn(name = "nroreserva"),
+            inverseJoinColumns = @JoinColumn(name = "idtiporecurso")
+    )
+    @ElementCollection
+    private List<TipoRecurso> tipoRecursos = new ArrayList<>();
+
 
 }
