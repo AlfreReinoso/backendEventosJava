@@ -1,5 +1,9 @@
 package eventos.eventos.Model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -7,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
@@ -14,6 +19,8 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @Data
 @Table(name ="interesado")
+@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
+
 public class Interesado {
     @Id
     @Column
@@ -32,6 +39,9 @@ public class Interesado {
     @Column
     private String telefono;
 
-    //private ArrayList<Evento> eventos = new ArrayList<>();
+    @JsonManagedReference
+    @OneToMany(mappedBy = "nroreserva") // un interesado para muchos eventos
+    @NotNull
+    private List<Evento> eventos = new ArrayList<>();
 
 }

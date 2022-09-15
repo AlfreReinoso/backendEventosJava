@@ -1,5 +1,9 @@
 package eventos.eventos.Model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,11 +23,12 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 @Table(name ="evento")
+@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
 public class Evento {
     @Id
     @GeneratedValue
     @Column
-    private int nroreserva;
+    private long nroreserva;
 
     @Column
     private Date fechareserva;
@@ -32,21 +37,24 @@ public class Evento {
     @Column
     private int cantpersonas;
 
+    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idinteresado")
     @NotNull
-    private Interesado interesado;
+    private Interesado interesado; // muchos eventos para un interesado
 
+    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idsala")
     @NotNull
-    private Sala sala;
+    private Sala sala; // muchos eventos para una sala
 
+
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "evento_tiporecurso",
             joinColumns = @JoinColumn(name = "nroreserva"),
             inverseJoinColumns = @JoinColumn(name = "idtiporecurso")
     )
-    @ElementCollection
     private List<TipoRecurso> tipoRecursos = new ArrayList<>();
 
 

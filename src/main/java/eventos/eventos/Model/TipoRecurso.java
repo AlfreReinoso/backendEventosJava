@@ -1,11 +1,13 @@
 package eventos.eventos.Model;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Builder
@@ -14,6 +16,8 @@ import java.util.Set;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "tiporecurso")
+@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
+
 public class TipoRecurso {
 
     @Id
@@ -30,5 +34,8 @@ public class TipoRecurso {
 
     @ManyToMany(mappedBy = "tipoRecursos")
     private List<Evento> eventos = new ArrayList<>();
-    //private ArrayList<Recurso> recursos = new ArrayList<Recurso>();
+
+    @OneToMany(mappedBy = "idrecurso")
+    @NotNull
+    private List<Recurso> recursos = new ArrayList<>();
 }

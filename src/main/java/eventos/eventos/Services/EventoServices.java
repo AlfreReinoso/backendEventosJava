@@ -18,4 +18,6 @@ public class EventoServices {
     public List<Evento> findEventos(){
         return eventoDao.findAll();
     }
+
+    public Evento findEventosById(long id){return eventoDao.findById(id).get();}
 }

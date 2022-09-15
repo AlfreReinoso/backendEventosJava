@@ -8,4 +8,5 @@ import java.util.List;
 public interface EventoDao extends JpaRepository<Evento, Long> {
 
     List<Evento> findAll();
+
 }
