@@ -32,7 +32,6 @@ public class Sala {
     @Column
     private int costopordia;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "nroreserva") // una sala para muchos eventos
     private List<Evento> eventos = new ArrayList<>();
 

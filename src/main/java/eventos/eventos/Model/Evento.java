@@ -37,17 +37,16 @@ public class Evento {
     @Column
     private int cantpersonas;
 
-    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idinteresado")
     @NotNull
     private Interesado interesado; // muchos eventos para un interesado
 
-    @JsonBackReference
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "idsala")
     @NotNull
     private Sala sala; // muchos eventos para una sala
+
 
 
     @ManyToMany(cascade = {CascadeType.ALL})

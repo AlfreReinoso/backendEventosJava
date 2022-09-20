@@ -39,7 +39,6 @@ public class Interesado {
     @Column
     private String telefono;
 
-    @JsonManagedReference
     @OneToMany(mappedBy = "nroreserva") // un interesado para muchos eventos
     @NotNull
     private List<Evento> eventos = new ArrayList<>();

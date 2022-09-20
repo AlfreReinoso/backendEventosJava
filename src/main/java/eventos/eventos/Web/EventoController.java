@@ -28,4 +28,6 @@ public class EventoController {
     public Evento getEventosById(@PathVariable long id){
         return eventoServices.findEventosById(id);
     }
+
+
 }

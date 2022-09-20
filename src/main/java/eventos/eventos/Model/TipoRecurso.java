@@ -1,6 +1,7 @@
 package eventos.eventos.Model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import lombok.*;
@@ -31,9 +32,9 @@ public class TipoRecurso {
     @Column
     private int costopordia;
 
-
     @ManyToMany(mappedBy = "tipoRecursos")
     private List<Evento> eventos = new ArrayList<>();
+
 
     @OneToMany(mappedBy = "idrecurso")
     @NotNull
