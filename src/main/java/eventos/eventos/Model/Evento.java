@@ -47,8 +47,6 @@ public class Evento {
     @NotNull
     private Sala sala; // muchos eventos para una sala
 
-
-
     @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "evento_tiporecurso",
             joinColumns = @JoinColumn(name = "nroreserva"),
