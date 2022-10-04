@@ -14,18 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Builder
+@Inheritance(strategy = InheritanceType.JOINED)
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name ="interesado")
+@Table(name ="usuario")
 @JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
-
-public class Interesado {
+public abstract class Usuario {
     @Id
     @Column
     @GeneratedValue
-    private int idinteresado;
+    private int idusuario;
     @Column
     private String tipodocumento;
     @Column

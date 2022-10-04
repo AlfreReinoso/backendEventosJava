@@ -16,15 +16,15 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "tiporecurso")
+@Table(name = "tiposervicio")
 @JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
 
-public class TipoRecurso {
+public class TipoServicio {
 
     @Id
     @GeneratedValue
     @Column
-    private int idtiporecurso;
+    private int idtiposervicio;
 
     @Column
     private String denominacion;
@@ -32,11 +32,11 @@ public class TipoRecurso {
     @Column
     private int costopordia;
 
-    @ManyToMany(mappedBy = "tipoRecursos")
+    @ManyToMany(mappedBy = "tipoServicios")
     private List<Evento> eventos = new ArrayList<>();
 
 
-    @OneToMany(mappedBy = "idrecurso")
+    @OneToMany(mappedBy = "idservicio")
     @NotNull
-    private List<Recurso> recursos = new ArrayList<>();
+    private List<Servicio> recursos = new ArrayList<>();
 }

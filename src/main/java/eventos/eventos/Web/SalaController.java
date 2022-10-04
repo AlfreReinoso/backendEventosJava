@@ -1,7 +1,7 @@
 package eventos.eventos.Web;
 
-import eventos.eventos.Model.Sala;
-import eventos.eventos.Services.SalaServices;
+import eventos.eventos.Model.Salon;
+import eventos.eventos.Services.SalonesServices;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,11 +16,13 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SalaController {
 
-    private final SalaServices salaServices;
+    private final SalonesServices salonesServices;
 
 
     @GetMapping("/findSalas")
-    public List<Sala> getSalas(){
-        return salaServices.findSalas();
+    public List<Salon> getSalones(){
+        return salonesServices.findSalones();
     }
+
+
 }

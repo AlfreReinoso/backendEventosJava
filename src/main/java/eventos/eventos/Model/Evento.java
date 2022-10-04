@@ -1,8 +1,6 @@
 package eventos.eventos.Model;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -15,7 +13,6 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 @Entity
 @Builder
@@ -38,21 +35,21 @@ public class Evento {
     private int cantpersonas;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idinteresado")
+    @JoinColumn(name = "idusuario")
     @NotNull
-    private Interesado interesado; // muchos eventos para un interesado
+    private Usuario usuario ;// muchos eventos para un interesado
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idsala")
+    @JoinColumn(name = "idsalon")
     @NotNull
-    private Sala sala; // muchos eventos para una sala
+    private Salon salon; // muchos eventos para una sala
 
     @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name = "evento_tiporecurso",
+    @JoinTable(name = "evento_tiposervicios",
             joinColumns = @JoinColumn(name = "nroreserva"),
-            inverseJoinColumns = @JoinColumn(name = "idtiporecurso")
+            inverseJoinColumns = @JoinColumn(name = "idtiposervicio")
     )
-    private List<TipoRecurso> tipoRecursos = new ArrayList<>();
+    private List<TipoServicio> tipoServicios = new ArrayList<>();
 
 
 }

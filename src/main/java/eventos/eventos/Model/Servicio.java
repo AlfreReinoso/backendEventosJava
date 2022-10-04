@@ -1,38 +1,34 @@
 package eventos.eventos.Model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-@Table(name ="sala")
+@Table(name ="servicio")
 @JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
-
-public class Sala {
+public class Servicio {
     @Id
     @GeneratedValue
     @Column
-    private int idsala;
+    private int idservicio;
+
+    @ManyToOne(cascade = CascadeType.ALL) // 1 .. * : un tipo de recurso para muchos recurso
+    @JoinColumn(name = "idTipoServicio")
+    @NotNull
+    private TipoServicio tiposervicio;
+
     @Column
     private String denominacion;
-    @Column
-    private int capacidad;
-    @Column
-    private int costopordia;
-
-    @OneToMany(mappedBy = "nroreserva") // una sala para muchos eventos
-    private List<Evento> eventos = new ArrayList<>();
 
 }

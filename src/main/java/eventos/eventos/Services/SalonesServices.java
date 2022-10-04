@@ -1,7 +1,7 @@
 package eventos.eventos.Services;
 
-import eventos.eventos.Model.Sala;
-import eventos.eventos.dao.SalaDao;
+import eventos.eventos.Model.Salon;
+import eventos.eventos.dao.SalonDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,11 +11,11 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class SalaServices {
+public class SalonesServices {
 
-    private final SalaDao salaDao;
+    private final SalonDao salaDao;
 
-    public List<Sala> findSalas(){
+    public List<Salon> findSalones(){
         return salaDao.findAll();
     }
 }
