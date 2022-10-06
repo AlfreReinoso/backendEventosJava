@@ -11,27 +11,26 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Table(name ="salon")
+@Entity
+@Table(name ="salones")
 @JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
-
 public class Salon {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private int idsalon;
+    private int idSalon;
+
     @Column
     private String denominacion;
+
     @Column
     private int capacidad;
-    @Column
-    private int costopordia;
 
-    @OneToMany(mappedBy = "nroreserva") // una sala para muchos eventos
-    private List<Evento> eventos = new ArrayList<>();
+    @Column
+    private double costoPorDia;
 
 }

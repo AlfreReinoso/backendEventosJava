@@ -10,33 +10,23 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
 @Builder
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "tiposervicio")
+@Entity
+@Table(name = "tipos_servicios")
 @JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
-
 public class TipoServicio {
-
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private int idtiposervicio;
+    private int idTipoServicio;
 
     @Column
     private String denominacion;
 
-    @Column
-    private int costopordia;
+    @OneToMany(mappedBy = "idServicio", cascade = {CascadeType.ALL})
+    private List<Servicio> servicios = new ArrayList<>();
 
-    @ManyToMany(mappedBy = "tipoServicios")
-    private List<Evento> eventos = new ArrayList<>();
-
-
-    @OneToMany(mappedBy = "idservicio")
-    @NotNull
-    private List<Servicio> recursos = new ArrayList<>();
 }

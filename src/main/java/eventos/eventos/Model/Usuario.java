@@ -13,33 +13,31 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-@AllArgsConstructor
-@NoArgsConstructor
-@Data
-@Table(name ="usuario")
+@MappedSuperclass
+@Table(name ="usuarios")
 @JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
 public abstract class Usuario {
     @Id
     @Column
-    @GeneratedValue
-    private int idusuario;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idUsuario;
+
     @Column
-    private String tipodocumento;
+    private String tipoDocumento;
+
     @Column
-    private String nrodocumento;
+    private String nroDocumento;
+
     @Column
     private String apellido;
+
     @Column
     private String nombre;
+
     @Column
     private String mail;
+
     @Column
     private String telefono;
-
-    @OneToMany(mappedBy = "nroreserva") // un interesado para muchos eventos
-    @NotNull
-    private List<Evento> eventos = new ArrayList<>();
 
 }

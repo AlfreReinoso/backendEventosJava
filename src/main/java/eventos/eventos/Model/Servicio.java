@@ -10,25 +10,28 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Table(name ="servicio")
+@Entity
+@Table(name ="servicios")
 @JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
 public class Servicio {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private int idservicio;
-
-    @ManyToOne(cascade = CascadeType.ALL) // 1 .. * : un tipo de recurso para muchos recurso
-    @JoinColumn(name = "idTipoServicio")
-    @NotNull
-    private TipoServicio tiposervicio;
+    private int idServicio;
 
     @Column
     private String denominacion;
+
+    @Column
+    private double costoPorDia;
+
+    @ManyToOne(cascade = CascadeType.ALL) // 1..* : Un tipo de servicio para distintos servicios.
+    @JoinColumn(name = "idTipoServicio", nullable = false)
+    @NotNull
+    private TipoServicio tipoServicio;
 
 }

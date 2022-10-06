@@ -1,15 +1,24 @@
 package eventos.eventos.Model;
 
+import com.sun.istack.NotNull;
 import lombok.*;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
-@Entity
-@NoArgsConstructor
+@Builder
 @Data
-@Table(name ="cliente")
-@EqualsAndHashCode(callSuper = true)
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name ="clientes")
 public class Cliente extends Usuario{
+    @OneToMany(mappedBy = "nroReserva")
+    private Set<Evento> eventos;
+
 }

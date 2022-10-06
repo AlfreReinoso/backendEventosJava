@@ -11,45 +11,46 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 import java.util.ArrayList;
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
-@Entity
 @Builder
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Table(name ="evento")
+@Entity
+@Table(name ="eventos")
 @JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
 public class Evento {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private long nroreserva;
+    private long nroReserva;
 
     @Column
-    private Date fechareserva;
+    private LocalDate fechaReserva;
     @Column
-    private Date fechaevento;
+    private LocalDate fechaEvento;
     @Column
-    private int cantpersonas;
+    private int cantidadPersonas;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idusuario")
+    @JoinColumn(name = "idUsuario", nullable = false)
     @NotNull
-    private Usuario usuario ;// muchos eventos para un interesado
+    private Cliente cliente ;// muchos eventos para un cliente
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "idsalon")
+    @JoinColumn(name = "idSalon", nullable = false)
     @NotNull
     private Salon salon; // muchos eventos para una sala
 
     @ManyToMany(cascade = {CascadeType.ALL})
-    @JoinTable(name = "evento_tiposervicios",
-            joinColumns = @JoinColumn(name = "nroreserva"),
-            inverseJoinColumns = @JoinColumn(name = "idtiposervicio")
+    @JoinTable(name = "eventos_servicios",
+            joinColumns = @JoinColumn(name = "nroReserva", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "idServicio", nullable = false)
     )
-    private List<TipoServicio> tipoServicios = new ArrayList<>();
-
+    private Set<Servicio> servicios;
 
 }
