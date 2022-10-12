@@ -7,11 +7,18 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/tiposervicio")
+@RequestMapping("/tipoServicio")
 @RequiredArgsConstructor
 public class TipoServicioControllerImpl implements TipoServicioController {
 
     private final TipoServicioService tipoServicioService;
+
+    @Override
+    @PostMapping("/saveTipoServicio")
+    @ResponseStatus(HttpStatus.CREATED)
+    public TipoServicio saveTipoServicio(@RequestBody TipoServicio tipoServicio) throws Exception {
+        return tipoServicioService.saveTipoServicio(tipoServicio);
+    }
 
     @Override
     @GetMapping("/findTipoServicio")
@@ -19,5 +26,4 @@ public class TipoServicioControllerImpl implements TipoServicioController {
     public TipoServicio findTipoServicio(@RequestParam(name = "idTipoServicio") int idTipoServicio) throws Exception {
         return tipoServicioService.findTipoServicio(idTipoServicio);
     }
-
 }

@@ -17,4 +17,9 @@ public class TipoSercivioServiceImpl implements TipoServicioService {
     public TipoServicio findTipoServicio(int idTipoServicio) {
         return tipoServicioDao.findById(idTipoServicio);
     }
+
+    @Override
+    public TipoServicio saveTipoServicio(TipoServicio tipoServicio) throws Exception {
+        return tipoServicioDao.saveAndFlush(tipoServicio);
+    }
 }
