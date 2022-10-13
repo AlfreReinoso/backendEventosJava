@@ -1,9 +1,8 @@
-package eventos.eventos.Web;
+package eventos.eventos.Web.evento;
 
 import eventos.eventos.Model.Evento;
-import eventos.eventos.Services.EventoServices;
+import eventos.eventos.Services.evento.EventoServices;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/eventos")
 @RequiredArgsConstructor
-public class EventoController {
+public class EventoControllerImpl implements EventoController{
 
 
     private final EventoServices eventoServices;

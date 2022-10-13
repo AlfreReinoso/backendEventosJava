@@ -1,4 +1,4 @@
-package eventos.eventos.dao;
+package eventos.eventos.dao.evento;
 
 import eventos.eventos.Model.Evento;
 import org.springframework.data.jpa.repository.JpaRepository;

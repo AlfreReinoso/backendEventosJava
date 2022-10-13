@@ -1,7 +1,7 @@
-package eventos.eventos.Services;
+package eventos.eventos.Services.evento;
 
 import eventos.eventos.Model.Evento;
-import eventos.eventos.dao.EventoDao;
+import eventos.eventos.dao.evento.EventoDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class EventoServices {
+public class EventoServices implements EventoService{
 
     private final EventoDao eventoDao;
 
