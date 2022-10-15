@@ -21,6 +21,11 @@ public class TipoSercivioServiceImpl implements TipoServicioService {
     }
 
     @Override
+    public TipoServicio updateTipoServicio(TipoServicio tipoServicio) throws Exception {
+        return tipoServicioDao.saveAndFlush(tipoServicio);
+    }
+
+    @Override
     public TipoServicio findTipoServicio(int idTipoServicio) {
         return tipoServicioDao.findById(idTipoServicio);
     }
@@ -28,5 +33,10 @@ public class TipoSercivioServiceImpl implements TipoServicioService {
     @Override
     public List<TipoServicio> findAll() {
         return tipoServicioDao.findAll();
+    }
+
+    @Override
+    public void deleteTipoServicio(TipoServicio tipoServicio) throws Exception {
+        tipoServicioDao.deleteById(tipoServicio.getIdTipoServicio());
     }
 }

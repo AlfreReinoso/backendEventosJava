@@ -24,6 +24,12 @@ public class TipoServicioControllerImpl implements TipoServicioController {
     }
 
     @Override
+    @PutMapping("/update")
+    public TipoServicio updateTipoServicio(@RequestBody @Valid TipoServicio tipoServicio) throws Exception {
+        return tipoServicioService.updateTipoServicio(tipoServicio);
+    }
+
+    @Override
     @GetMapping("/find")
     @ResponseStatus(HttpStatus.OK)
     public TipoServicio findTipoServicio(@RequestParam(name = "idTipoServicio") int idTipoServicio) throws Exception {
@@ -35,5 +41,11 @@ public class TipoServicioControllerImpl implements TipoServicioController {
     @ResponseStatus(HttpStatus.OK)
     public List<TipoServicio> findAll() throws Exception {
         return tipoServicioService.findAll();
+    }
+
+    @Override
+    @DeleteMapping("/delete")
+    public void deleteTipoServicio(@RequestBody @Valid TipoServicio tipoServicio) throws Exception {
+        tipoServicioService.deleteTipoServicio(tipoServicio);
     }
 }

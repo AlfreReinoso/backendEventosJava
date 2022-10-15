@@ -8,7 +8,11 @@ public interface TipoServicioService {
 
     TipoServicio saveTipoServicio(TipoServicio tipoServicio) throws Exception;
 
+    TipoServicio updateTipoServicio(TipoServicio tipoServicio) throws Exception;
+
     TipoServicio findTipoServicio(int idTipoServicio) throws Exception;
 
     List<TipoServicio> findAll() throws Exception;
+
+    void deleteTipoServicio(TipoServicio tipoServicio) throws Exception;
 }
