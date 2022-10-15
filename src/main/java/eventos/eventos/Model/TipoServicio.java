@@ -3,9 +3,14 @@ package eventos.eventos.Model;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @Data
@@ -24,7 +29,6 @@ public class TipoServicio {
     @NotNull
     private String denominacion;
 
-//    @OneToMany(mappedBy = "idServicio", cascade = {CascadeType.ALL})
-//    private List<Servicio> servicios = new ArrayList<>();
-
+    @OneToMany(mappedBy = "tipoServicio", cascade = {CascadeType.ALL})
+    private List<Servicio> servicios = new ArrayList<>();
 }
