@@ -6,6 +6,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -16,14 +17,14 @@ public class TipoServicioControllerImpl implements TipoServicioController {
     private final TipoServicioService tipoServicioService;
 
     @Override
-    @PostMapping("/saveTipoServicio")
+    @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
-    public TipoServicio saveTipoServicio(@RequestBody TipoServicio tipoServicio) throws Exception {
+    public TipoServicio saveTipoServicio(@RequestBody @Valid TipoServicio tipoServicio) throws Exception {
         return tipoServicioService.saveTipoServicio(tipoServicio);
     }
 
     @Override
-    @GetMapping("/findTipoServicio")
+    @GetMapping("/find")
     @ResponseStatus(HttpStatus.OK)
     public TipoServicio findTipoServicio(@RequestParam(name = "idTipoServicio") int idTipoServicio) throws Exception {
         return tipoServicioService.findTipoServicio(idTipoServicio);
