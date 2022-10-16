@@ -32,4 +32,9 @@ public class SalonControllerImpl implements SalonController {
     public Salon saveSalon(@RequestBody Salon salon) throws Exception {
         return salonesServices.saveSalon(salon);
     }
+
+    @DeleteMapping("/delete/{id}")
+    public void deleteSalon(@PathVariable long id) throws Exception {
+        salonesServices.deleteById(id);
+    }
 }

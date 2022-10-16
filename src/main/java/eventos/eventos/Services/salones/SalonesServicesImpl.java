@@ -24,4 +24,7 @@ public class SalonesServicesImpl implements SalonesService{
     public Salon saveSalon(Salon salon) throws Exception{
         return salaDao.save(salon);
     }
+    public void deleteById(long id) throws Exception{
+        salaDao.deleteById(id);
+    }
 }
