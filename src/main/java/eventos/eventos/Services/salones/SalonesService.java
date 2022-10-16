@@ -11,4 +11,6 @@ public interface SalonesService {
     Salon findSalonById(long id) throws Exception;
 
     Salon saveSalon(Salon salon) throws Exception;
+
+
 }
