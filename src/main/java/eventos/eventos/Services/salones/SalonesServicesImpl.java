@@ -37,4 +37,11 @@ public class SalonesServicesImpl implements SalonesService{
 
         return salaDao.save(salon);
     }
+
+    @Override
+    public void deleteById(long id) throws Exception {
+        Salon salonDB = salaDao.findById(id)
+                .orElseThrow(() -> new NotFoundException("No existe el salon"));
+        salaDao.deleteById(id);
+    }
 }

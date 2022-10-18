@@ -13,4 +13,6 @@ public interface SalonesService {
     Salon saveSalon(Salon salon) throws Exception;
 
     Salon updateSalon(Salon salon) throws Exception;
+
+    void deleteById(long id) throws Exception;
 }
