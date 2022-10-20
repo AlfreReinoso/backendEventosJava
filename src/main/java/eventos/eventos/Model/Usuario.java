@@ -14,7 +14,7 @@ public abstract class Usuario {
     @Id
     @Column
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idUsuario;
+    private long idUsuario;
 
     @Column
     private String tipoDocumento;

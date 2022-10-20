@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Builder
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
+// @AllArgsConstructor
 @Entity
 @Table(name ="administrativos")
 @JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
