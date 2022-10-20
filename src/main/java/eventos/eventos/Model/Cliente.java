@@ -1,15 +1,11 @@
 package eventos.eventos.Model;
 
-import com.sun.istack.NotNull;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import java.util.ArrayList;
+import javax.persistence.*;
 import java.util.List;
-import java.util.Set;
 
 @Builder
 @Data
@@ -17,8 +13,10 @@ import java.util.Set;
 @NoArgsConstructor
 @Entity
 @Table(name ="clientes")
+@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
 public class Cliente extends Usuario{
+
     @OneToMany(mappedBy = "nroReserva")
-    private Set<Evento> eventos;
+    private List<Evento> eventos;
 
 }
