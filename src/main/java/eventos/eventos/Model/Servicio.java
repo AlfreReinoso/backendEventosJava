@@ -29,9 +29,8 @@ public class Servicio {
     @Column
     private double costoPorDia;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "idTipoServicio", nullable = false)
     @NotNull
     private TipoServicio tipoServicio;
-
 }

@@ -4,10 +4,10 @@ import eventos.eventos.Model.Servicio;
 import eventos.eventos.Services.servicio.ServicioService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping("/servicio")
@@ -17,9 +17,35 @@ public class ServicioControllerImpl implements ServicioController {
     private final ServicioService servicioService;
 
     @Override
-    @GetMapping("/findServicio")
+    @PostMapping("/save")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Servicio saveTipoServicio(@RequestBody @Valid Servicio servicio) throws Exception {
+        return servicioService.saveServicio(servicio);
+    }
+
+    @Override
+    @PutMapping("/update")
+    public Servicio updateTipoServicio(@RequestBody @Valid Servicio servicio) throws Exception {
+        return servicioService.updateServicio(servicio);
+    }
+
+    @Override
+    @GetMapping("/find")
     @ResponseStatus(HttpStatus.OK)
-    public Servicio findServicio(int idServicio) throws Exception {
+    public Servicio findServicio(@RequestParam(name = "idServicio") int idServicio) throws Exception {
         return servicioService.findServicio(idServicio);
+    }
+
+    @Override
+    @GetMapping("/findAll")
+    @ResponseStatus(HttpStatus.OK)
+    public List<Servicio> findAll() throws Exception {
+        return servicioService.findAll();
+    }
+
+    @Override
+    @DeleteMapping("/delete")
+    public void deleteServicio(@RequestBody @Valid Servicio servicio) throws Exception {
+        servicioService.deleteServicio(servicio);
     }
 }

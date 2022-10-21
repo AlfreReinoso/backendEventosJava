@@ -11,7 +11,7 @@ import java.util.List;
 @Service
 @Transactional
 @RequiredArgsConstructor
-public class TipoSercivioServiceImpl implements TipoServicioService {
+public class TipoServicioServiceImpl implements TipoServicioService {
 
     private final TipoServicioDao tipoServicioDao;
 
@@ -26,12 +26,12 @@ public class TipoSercivioServiceImpl implements TipoServicioService {
     }
 
     @Override
-    public TipoServicio findTipoServicio(int idTipoServicio) {
+    public TipoServicio findTipoServicio(int idTipoServicio) throws Exception {
         return tipoServicioDao.findById(idTipoServicio);
     }
 
     @Override
-    public List<TipoServicio> findAll() {
+    public List<TipoServicio> findAll() throws Exception {
         return tipoServicioDao.findAll();
     }
 
