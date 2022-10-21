@@ -20,4 +20,8 @@ public class EventoServices implements EventoService{
     }
 
     public Evento findEventosById(long id){return eventoDao.findById(id).get();}
+
+    public Evento newEvento ( Evento evento ){
+        return eventoDao.save(evento);
+    }
 }

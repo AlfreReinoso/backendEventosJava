@@ -3,11 +3,9 @@ package eventos.eventos.Web.evento;
 import eventos.eventos.Model.Evento;
 import eventos.eventos.Services.evento.EventoServices;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -28,5 +26,7 @@ public class EventoControllerImpl implements EventoController{
         return eventoServices.findEventosById(id);
     }
 
+    @PostMapping
+    public Evento newEvento(@RequestBody @Valid Evento evento) {return eventoServices.newEvento(evento);  }
 
 }

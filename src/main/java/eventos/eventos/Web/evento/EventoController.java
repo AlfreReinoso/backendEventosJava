@@ -9,4 +9,6 @@ public interface EventoController {
     List<Evento> getEventos() throws Exception;
 
     Evento getEventosById( long id) throws Exception;
+
+    Evento newEvento(Evento evento)throws Exception;
 }

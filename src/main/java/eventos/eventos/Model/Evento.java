@@ -32,7 +32,7 @@ public class Evento {
     @Column
     private int cantidadPersonas;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)
     @NotNull
     private Cliente cliente ;// muchos eventos para un cliente
