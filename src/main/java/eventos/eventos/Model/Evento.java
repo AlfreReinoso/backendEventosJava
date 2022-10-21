@@ -37,7 +37,7 @@ public class Evento {
     @NotNull
     private Cliente cliente ;// muchos eventos para un cliente
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "idSalon", nullable = false)
     @NotNull
     private Salon salon; // muchos eventos para una sala

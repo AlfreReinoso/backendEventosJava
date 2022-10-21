@@ -16,7 +16,7 @@ import java.util.List;
 @JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
 public class Cliente extends Usuario{
 
-    @OneToMany(mappedBy = "nroReserva", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "nroReserva", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Evento> eventos;
 
 }
