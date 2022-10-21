@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Builder
@@ -37,16 +38,16 @@ public class Evento {
     @NotNull
     private Cliente cliente ;// muchos eventos para un cliente
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne
     @JoinColumn(name = "idSalon", nullable = false)
     @NotNull
     private Salon salon; // muchos eventos para una sala
 
-    @ManyToMany(cascade = {CascadeType.ALL})
+    @ManyToMany
     @JoinTable(name = "eventos_servicios",
             joinColumns = @JoinColumn(name = "nroReserva", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "idServicio", nullable = false)
     )
-    private Set<Servicio> servicios;
+    private List<Servicio> servicios;
 
 }

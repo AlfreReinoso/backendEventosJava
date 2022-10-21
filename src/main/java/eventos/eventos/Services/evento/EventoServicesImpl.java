@@ -1,11 +1,13 @@
 package eventos.eventos.Services.evento;
 
+import eventos.eventos.Model.Cliente;
 import eventos.eventos.Model.Evento;
 import eventos.eventos.Model.Salon;
 import eventos.eventos.Model.Servicio;
 import eventos.eventos.dao.cliente.ClienteDao;
 import eventos.eventos.dao.evento.EventoDao;
 import eventos.eventos.dao.salon.SalonDao;
+import eventos.eventos.dao.servicio.ServicioDao;
 import javassist.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,7 @@ public class EventoServicesImpl implements EventoService{
     private final EventoDao eventoDao;
     private final SalonDao salonDao;
     private final ClienteDao clienteDao;
+    private final ServicioDao servicioDao;
 
     @Override
     public List<Evento> findEventos() throws Exception{
@@ -37,25 +40,34 @@ public class EventoServicesImpl implements EventoService{
 
     @Override
     public Evento newEvento ( Evento evento )throws Exception{
-        /*Salon salonDB = salaDao.findById(salon.getIdSalon())
-                .orElseThrow(() -> new NotFoundException("No existe el salon"));*/
 
         // Valida que exista un salon
         long idSalonDb = evento.getSalon().getIdSalon();
-        salonDao.findById(idSalonDb).orElseThrow(()->new NotFoundException("No existe el salon"));
+        Salon salonDb = salonDao.findById(idSalonDb).orElseThrow(()->new NotFoundException("No existe el salon"));
 
         // Valida que exista un cliente
         long idClienteDb = evento.getCliente().getIdUsuario();
-        clienteDao.findById(idClienteDb).orElseThrow(()->new NotFoundException("No existe el Cliente ingresado"));
+        Cliente clienteDb = clienteDao.findById(idClienteDb).orElseThrow(()->new NotFoundException("No existe el Cliente ingresado"));
 
-        /*Set<Servicio> serviciosParam = evento.getServicios();
+        // Valida que existan los servicios
+        List<Servicio> serviciosParam = evento.getServicios();
         if( serviciosParam != null){
-            serviciosParam.forEach();
-        }*/
+            for(Servicio servicio : serviciosParam){
+                if(servicioDao.findById(servicio.getIdServicio())==null){
+                    throw new Exception("No existe el servicio ingresado");
+                };
+
+            }
+        }
+        // Consultar si es necesario..
+        /*evento.setSalon(salonDb);
+        evento.setCliente(clienteDb);
+        evento.setServicios(serviciosParam);*/
 
         /*if(salonDao.findById(idsalonDb).get() == null){
             throw new Exception("No existe el salon ingresado");
         }*/
         return eventoDao.saveAndFlush(evento);
     }
+
 }
