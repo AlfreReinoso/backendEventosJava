@@ -18,4 +18,22 @@ public class ClienteServiceImpl implements ClienteService{
     public List<Cliente> findClientes() throws Exception {
         return clienteDao.findAll();
     }
+    @Override
+    public Cliente findCliente(long id) throws Exception{
+        return clienteDao.findById(id).get();
+    }
+
+    @Override
+    public Cliente updateCliente(Cliente cliente) throws Exception{
+        return clienteDao.save(cliente);
+    }
+
+    @Override
+    public void deleteCliente(long id) throws Exception{
+        clienteDao.deleteById(id);
+    }
+    @Override
+    public Cliente newCliente(Cliente cliente ) throws Exception{
+       return clienteDao.save(cliente);
+    }
 }

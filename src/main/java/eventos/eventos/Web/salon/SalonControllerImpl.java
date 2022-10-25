@@ -1,8 +1,9 @@
 package eventos.eventos.Web.salon;
 
+import javax.validation.Valid;
 import eventos.eventos.Model.Salon;
 import eventos.eventos.Model.TipoServicio;
-import eventos.eventos.Services.salones.SalonesServicesImpl;
+import eventos.eventos.Services.salones.SalonesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -15,18 +16,21 @@ import java.util.List;
 @RequiredArgsConstructor
 public class SalonControllerImpl implements SalonController {
 
-    private final SalonesServicesImpl salonesServices;
+    private final SalonesService salonesServices;
 
 
     @GetMapping("/findSalas")
-    public List<Salon> getSalones(){
+    public List<Salon> getSalones() throws Exception {
         return salonesServices.findSalones();
     }
 
     @GetMapping("/{id}")
-    public Salon getSalon(@PathVariable long id){return salonesServices.findSalonById(id);}
+    public Salon getSalon(@PathVariable long id) throws Exception {return salonesServices.findSalonById(id);}
 
-
+    @PutMapping("/update")
+    public Salon updateSalon(@RequestBody @Valid Salon salon) throws Exception {
+        return salonesServices.updateSalon(salon);
+    }
     @PostMapping("/savesalon")
     @ResponseStatus(HttpStatus.CREATED)
     public Salon saveSalon(@RequestBody Salon salon) throws Exception {

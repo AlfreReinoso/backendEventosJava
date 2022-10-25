@@ -8,4 +8,6 @@ public interface EventoService {
     List<Evento> findEventos() throws Exception;
 
     Evento findEventosById(long id) throws Exception;
+
+    Evento newEvento(Evento evento) throws Exception;
 }

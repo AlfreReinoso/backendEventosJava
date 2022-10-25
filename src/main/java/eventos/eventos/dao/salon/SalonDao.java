@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface SalonDao extends JpaRepository<Salon, Long> {
 
-    List<Salon> findAll();
 
 
 }
