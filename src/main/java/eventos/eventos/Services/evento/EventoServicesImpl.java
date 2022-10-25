@@ -50,7 +50,7 @@ public class EventoServicesImpl implements EventoService{
         Cliente clienteDb = clienteDao.findById(idClienteDb).orElseThrow(()->new NotFoundException("No existe el Cliente ingresado"));
 
         // Valida que existan los servicios
-        List<Servicio> serviciosParam = evento.getServicios();
+        Set<Servicio> serviciosParam = evento.getServicios();
         if( serviciosParam != null){
             for(Servicio servicio : serviciosParam){
                 if(servicioDao.findById(servicio.getIdServicio())==null){

@@ -27,6 +27,6 @@ public class TipoServicio {
     @Column
     private String denominacion;
 
-    @OneToMany(mappedBy = "tipoServicio", cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "idServicio", cascade = {CascadeType.ALL})
     private List<Servicio> servicios = new ArrayList<>();
 }
