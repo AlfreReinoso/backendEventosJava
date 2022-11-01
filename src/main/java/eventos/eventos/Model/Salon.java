@@ -22,7 +22,7 @@ public class Salon {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
-    private int idSalon;
+    private long idSalon;
 
     @Column
     private String denominacion;

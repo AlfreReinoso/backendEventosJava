@@ -42,10 +42,10 @@ public class Evento {
     @NotNull
     private Salon salon; // muchos eventos para una sala
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.ALL})
     @JoinTable(name = "eventos_servicios",
-            joinColumns = @JoinColumn(name = "nroReserva"),
-            inverseJoinColumns = @JoinColumn(name = "idServicio")
+            joinColumns = @JoinColumn(name = "nroReserva", nullable = false),
+            inverseJoinColumns = @JoinColumn(name = "idServicio", nullable = false)
     )
     private Set<Servicio> servicios;
 
