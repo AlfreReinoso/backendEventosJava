@@ -1,6 +1,7 @@
 package eventos.eventos.Model;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
@@ -32,10 +33,16 @@ public class Evento {
     @Column
     private int cantidadPersonas;
 
+    //@JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)
     @NotNull
     private Cliente cliente ;// muchos eventos para un cliente
+
+//    @ManyToOne
+//    @JoinColumn(name = "idTipoServicio", nullable = false)
+//    @NotNull
+//    private TipoServicio tipoServicio;
 
     @ManyToOne
     @JoinColumn(name = "idSalon", nullable = false)

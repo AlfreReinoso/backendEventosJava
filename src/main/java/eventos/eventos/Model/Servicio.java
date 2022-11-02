@@ -16,7 +16,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name ="servicios")
-@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
+//@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
 public class Servicio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
