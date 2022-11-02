@@ -1,7 +1,6 @@
 package eventos.eventos.Model;
 
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "tipos_servicios")
-@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
+//@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
 public class TipoServicio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,6 +26,7 @@ public class TipoServicio {
     @Column
     private String denominacion;
 
-    @OneToMany(mappedBy = "idServicio", cascade = {CascadeType.ALL})
+    @JsonBackReference
+    @OneToMany(mappedBy = "tipoServicio", cascade = {CascadeType.ALL})
     private List<Servicio> servicios = new ArrayList<>();
 }

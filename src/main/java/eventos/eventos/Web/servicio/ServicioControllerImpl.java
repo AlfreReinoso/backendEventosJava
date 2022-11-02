@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-@CrossOrigin(origins="http://localhost:4200")
+
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/servicio")
 @RequiredArgsConstructor
@@ -20,6 +21,7 @@ public class ServicioControllerImpl implements ServicioController {
     @PostMapping("/save")
     @ResponseStatus(HttpStatus.CREATED)
     public Servicio saveTipoServicio(@RequestBody @Valid Servicio servicio) throws Exception {
+        System.out.println(servicio);
         return servicioService.saveServicio(servicio);
     }
 
