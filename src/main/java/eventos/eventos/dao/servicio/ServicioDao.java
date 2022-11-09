@@ -7,4 +7,6 @@ import java.util.List;
 public interface ServicioDao extends JpaRepository<Servicio, Integer> {
 
     Servicio findById(int idServicio);
+
+    Servicio findByDenominacion( String denominacion);
 }

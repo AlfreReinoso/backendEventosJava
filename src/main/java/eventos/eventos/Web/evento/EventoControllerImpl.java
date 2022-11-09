@@ -32,5 +32,12 @@ public class EventoControllerImpl implements EventoController{
         return eventoServices.newEvento(evento);
     }
 
-
+    @PutMapping("/putEventos")
+    public Evento updateEvento(@RequestBody @Valid Evento evento) throws Exception {
+        return eventoServices.updateEvento(evento);
+    }
+    @DeleteMapping("/deleteEventos/{id}")
+    public void deleteEvento(@PathVariable long id)throws Exception {
+        eventoServices.deleteEventoById(id);
+    }
 }

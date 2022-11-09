@@ -10,4 +10,9 @@ public interface EventoService {
     Evento findEventosById(long id) throws Exception;
 
     Evento newEvento(Evento evento) throws Exception;
+
+    Evento updateEvento(Evento evento) throws Exception;
+
+    void deleteEventoById( long id) throws Exception;
+
 }

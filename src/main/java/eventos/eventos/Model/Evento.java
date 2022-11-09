@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Builder
@@ -54,6 +55,6 @@ public class Evento {
             joinColumns = @JoinColumn(name = "nroReserva", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "idServicio", nullable = false)
     )
-    private Set<Servicio> servicios;
+    private List<Servicio> servicios;
 
 }
