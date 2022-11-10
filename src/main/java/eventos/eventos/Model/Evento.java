@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Set;
 
 @Builder
@@ -34,10 +35,16 @@ public class Evento {
     @Column
     private int cantidadPersonas;
 
+    //@JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)
     @NotNull
     private Cliente cliente ;// muchos eventos para un cliente
+
+//    @ManyToOne
+//    @JoinColumn(name = "idTipoServicio", nullable = false)
+//    @NotNull
+//    private TipoServicio tipoServicio;
 
     @ManyToOne
     @JoinColumn(name = "idSalon", nullable = false)
@@ -49,6 +56,6 @@ public class Evento {
             joinColumns = @JoinColumn(name = "nroReserva", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "idServicio", nullable = false)
     )
-    private Set<Servicio> servicios;
+    private List<Servicio> servicios;
 
 }

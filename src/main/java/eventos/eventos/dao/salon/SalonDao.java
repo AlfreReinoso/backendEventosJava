@@ -7,6 +7,7 @@ import java.util.List;
 
 public interface SalonDao extends JpaRepository<Salon, Long> {
 
+    public Salon findSalonByDenominacion(String denominacion);
 
 
 }

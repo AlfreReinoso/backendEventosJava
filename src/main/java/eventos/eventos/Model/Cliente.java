@@ -7,6 +7,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Builder
@@ -19,7 +20,10 @@ import java.util.List;
 public class Cliente extends Usuario{
 
     @JsonBackReference
-    @OneToMany(mappedBy = "nroReserva", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private List<Evento> eventos;
+    @OneToMany(mappedBy = "cliente", cascade = {CascadeType.ALL})
+    private List<Evento> eventos = new ArrayList<>();
 
+//    @JsonBackReference
+//    @OneToMany(mappedBy = "tipoServicio", cascade = {CascadeType.ALL})
+//    private List<Servicio> servicios = new ArrayList<>();
 }
