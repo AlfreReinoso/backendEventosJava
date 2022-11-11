@@ -121,8 +121,8 @@ public class EventoServicesImpl implements EventoService{
     }
 
     @Override
-    public void deleteEventoById(long id) throws Exception{
-        eventoDao.deleteById(id);
+    public void deleteEvento(Evento evento) throws Exception{
+        eventoDao.deleteById(evento.getNroReserva());
     }
 
 }

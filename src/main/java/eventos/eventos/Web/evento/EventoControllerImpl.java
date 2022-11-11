@@ -1,6 +1,7 @@
 package eventos.eventos.Web.evento;
 
 import eventos.eventos.Model.Evento;
+import eventos.eventos.Model.Servicio;
 import eventos.eventos.Services.evento.EventoServicesImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -36,8 +37,8 @@ public class EventoControllerImpl implements EventoController{
     public Evento updateEvento(@RequestBody @Valid Evento evento) throws Exception {
         return eventoServices.updateEvento(evento);
     }
-    @DeleteMapping("/deleteEventos/{id}")
-    public void deleteEvento(@PathVariable long id)throws Exception {
-        eventoServices.deleteEventoById(id);
+    @PostMapping("/deleteEventos")
+    public void deleteEvento(@RequestBody @Valid Evento evento)throws Exception {
+        eventoServices.deleteEvento(evento);
     }
 }

@@ -13,6 +13,6 @@ public interface EventoService {
 
     Evento updateEvento(Evento evento) throws Exception;
 
-    void deleteEventoById( long id) throws Exception;
+    void deleteEvento(Evento evento) throws Exception;
 
 }
