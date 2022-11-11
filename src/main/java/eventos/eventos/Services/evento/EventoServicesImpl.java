@@ -59,19 +59,18 @@ public class EventoServicesImpl implements EventoService{
             for(Servicio servicio : serviciosParam){
                 if(servicioDao.findById(servicio.getIdServicio())==null){
                     throw new Exception("No existe el servicio ingresado");
-                };
-
+                }
             }
         }
         // Consultar si es necesario..
-        /*evento.setSalon(salonDb);
+        evento.setSalon(salonDb);
         evento.setCliente(clienteDb);
-        evento.setServicios(serviciosParam);*/
+        evento.setServicios(serviciosParam);
 
         /*if(salonDao.findById(idsalonDb).get() == null){
             throw new Exception("No existe el salon ingresado");
         }*/
-        return eventoDao.saveAndFlush(evento);
+        return eventoDao.save(evento);
     }
 
     @Override
@@ -114,9 +113,9 @@ public class EventoServicesImpl implements EventoService{
                 }
             }
         }
-        evento.setSalon(salonDb);
+        /*evento.setSalon(salonDb);
         evento.setCliente(clienteDb);
-        evento.setServicios(serviciosToSave);
+        evento.setServicios(serviciosToSave);*/
         return eventoDao.save(evento);
     }
 
