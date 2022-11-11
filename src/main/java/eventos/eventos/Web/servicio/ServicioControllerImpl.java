@@ -46,7 +46,7 @@ public class ServicioControllerImpl implements ServicioController {
     }
 
     @Override
-    @DeleteMapping("/delete")
+    @PostMapping("/delete")
     public void deleteServicio(@RequestBody @Valid Servicio servicio) throws Exception {
         servicioService.deleteServicio(servicio);
     }

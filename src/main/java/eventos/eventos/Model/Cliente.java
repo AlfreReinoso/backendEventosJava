@@ -2,6 +2,7 @@ package eventos.eventos.Model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.*;
 
@@ -25,5 +26,4 @@ public class Cliente extends Usuario{
 //    @JsonBackReference
 //    @OneToMany(mappedBy = "tipoServicio", cascade = {CascadeType.ALL})
 //    private List<Servicio> servicios = new ArrayList<>();
-
 }
