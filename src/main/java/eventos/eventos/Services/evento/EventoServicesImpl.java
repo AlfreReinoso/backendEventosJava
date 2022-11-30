@@ -49,6 +49,10 @@ public class EventoServicesImpl implements EventoService{
         long idSalonDb = evento.getSalon().getIdSalon();
         Salon salonDb = salonDao.findById(idSalonDb).orElseThrow(()->new NotFoundException("No existe el salon"));
 
+        if(!(evento.getCantidadPersonas() < salonDb.getCapacidad())){
+            throw new Exception("La cantidad de personas ingresada es mayor a la capacidad del salon");
+        }
+
         // Valida que exista un cliente
         long idClienteDb = evento.getCliente().getIdUsuario();
         Cliente clienteDb = clienteDao.findById(idClienteDb).orElseThrow(()->new NotFoundException("No existe el Cliente ingresado"));
@@ -63,9 +67,9 @@ public class EventoServicesImpl implements EventoService{
             }
         }
         // Consultar si es necesario..
-        evento.setSalon(salonDb);
+        /*evento.setSalon(salonDb);
         evento.setCliente(clienteDb);
-        evento.setServicios(serviciosParam);
+        evento.setServicios(serviciosParam);*/
 
         /*if(salonDao.findById(idsalonDb).get() == null){
             throw new Exception("No existe el salon ingresado");
@@ -114,8 +118,8 @@ public class EventoServicesImpl implements EventoService{
             }
         }
         /*evento.setSalon(salonDb);
-        evento.setCliente(clienteDb);
-        evento.setServicios(serviciosToSave);*/
+        evento.setCliente(clienteDb);*/
+        evento.setServicios(serviciosToSave);
         return eventoDao.save(evento);
     }
 
