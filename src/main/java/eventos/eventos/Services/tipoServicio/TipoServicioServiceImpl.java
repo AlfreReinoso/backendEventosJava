@@ -36,7 +36,7 @@ public class TipoServicioServiceImpl implements TipoServicioService {
     }
 
     @Override
-    public void deleteTipoServicio(TipoServicio tipoServicio) throws Exception {
-        tipoServicioDao.deleteById(tipoServicio.getIdTipoServicio());
+    public void deleteTipoServicio(int id) throws Exception {
+        tipoServicioDao.deleteById(id);
     }
 }

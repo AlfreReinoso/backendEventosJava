@@ -1,6 +1,7 @@
 package eventos.eventos.Web.servicio;
 
 import eventos.eventos.Model.Servicio;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
 
@@ -12,7 +13,8 @@ public interface ServicioController {
 
     Servicio findServicio(int idServicio) throws Exception;
 
+    void deleteServicio(int id) throws Exception;
+
     List<Servicio> findAll() throws Exception;
 
-    void deleteServicio(Servicio servicio) throws Exception;
 }

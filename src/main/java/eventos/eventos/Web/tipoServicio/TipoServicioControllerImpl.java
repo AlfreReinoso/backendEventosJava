@@ -45,8 +45,8 @@ public class TipoServicioControllerImpl implements TipoServicioController {
     }
 
     @Override
-    @PostMapping("/delete")
-    public void deleteTipoServicio(@RequestBody @Valid TipoServicio tipoServicio) throws Exception {
-        tipoServicioService.deleteTipoServicio(tipoServicio);
+    @DeleteMapping("/delete/{id}")
+    public void deleteTipoServicio(@PathVariable int id) throws Exception {
+        tipoServicioService.deleteTipoServicio(id);
     }
 }

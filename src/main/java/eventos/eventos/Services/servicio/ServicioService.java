@@ -14,5 +14,5 @@ public interface ServicioService {
 
     List<Servicio> findAll() throws Exception;
 
-    void deleteServicio(Servicio servicio) throws Exception;
+    void deleteServicio(int id) throws Exception;
 }
