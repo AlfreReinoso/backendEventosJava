@@ -9,7 +9,7 @@ import javax.persistence.*;
 @MappedSuperclass
 @Data
 // @Table(name ="usuarios")
-@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
+//@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
 public abstract class Usuario {
     @Id
     @Column

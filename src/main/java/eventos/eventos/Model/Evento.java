@@ -1,6 +1,9 @@
 package eventos.eventos.Model;
 
-import com.fasterxml.jackson.annotation.*;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -8,7 +11,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Set;
@@ -33,17 +35,23 @@ public class Evento {
     @Column
     private int cantidadPersonas;
 
+    //@JsonManagedReference
     @ManyToOne
     @JoinColumn(name = "idUsuario", nullable = false)
     @NotNull
     private Cliente cliente ;// muchos eventos para un cliente
+
+//    @ManyToOne
+//    @JoinColumn(name = "idTipoServicio", nullable = false)
+//    @NotNull
+//    private TipoServicio tipoServicio;
 
     @ManyToOne
     @JoinColumn(name = "idSalon", nullable = false)
     @NotNull
     private Salon salon; // muchos eventos para una sala
 
-    @ManyToMany
+    @ManyToMany()
     @JoinTable(name = "eventos_servicios",
             joinColumns = @JoinColumn(name = "nroReserva", nullable = false),
             inverseJoinColumns = @JoinColumn(name = "idServicio", nullable = false)

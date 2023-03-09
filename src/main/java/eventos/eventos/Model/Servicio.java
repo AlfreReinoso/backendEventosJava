@@ -16,7 +16,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name ="servicios")
-@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
+// @JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
 public class Servicio {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +29,8 @@ public class Servicio {
     @Column
     private double costoPorDia;
 
-    @ManyToOne(cascade = CascadeType.ALL) // 1..* : Un tipo de servicio para distintos servicios.
+    @ManyToOne
     @JoinColumn(name = "idTipoServicio", nullable = false)
     @NotNull
     private TipoServicio tipoServicio;
-
 }
