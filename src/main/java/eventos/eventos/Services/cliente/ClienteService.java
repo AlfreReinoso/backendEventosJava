@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutionException;
 public interface ClienteService {
     List<Cliente> findClientes() throws Exception;
 
-    Cliente findCliente(long id) throws Exception;
+    Cliente findCliente(String usuarioName) throws Exception;
 
     Cliente updateCliente(Cliente cliente) throws Exception;
 

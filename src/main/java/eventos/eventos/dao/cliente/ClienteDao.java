@@ -10,4 +10,6 @@ public interface ClienteDao extends JpaRepository<Cliente, Long> {
 
 
     Cliente findClienteByApellido(String apellido);
+
+    Cliente findClienteByUsuarioName(String usuarioName);
 }

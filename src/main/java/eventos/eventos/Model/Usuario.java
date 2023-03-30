@@ -34,4 +34,7 @@ public abstract class Usuario {
     @Column
     private String telefono;
 
+    @Column
+    private String usuarioName;
+
 }

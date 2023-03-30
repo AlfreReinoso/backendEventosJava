@@ -19,8 +19,8 @@ public class ClienteServiceImpl implements ClienteService{
         return clienteDao.findAll();
     }
     @Override
-    public Cliente findCliente(long id) throws Exception{
-        return clienteDao.findById(id).get();
+    public Cliente findCliente(String usuarioName) throws Exception{
+        return clienteDao.findClienteByUsuarioName(usuarioName);
     }
 
     @Override

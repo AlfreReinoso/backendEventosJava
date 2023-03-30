@@ -25,9 +25,9 @@ public class ClienteControllerImpl implements ClienteController {
         return clienteService.findClientes();
     }
     @Override
-    @GetMapping("/findCliente/{id}")
-    public Cliente getCliente(@PathVariable long id) throws Exception{
-        return clienteService.findCliente(id);
+    @GetMapping("/findCliente/{usuarioName}")
+    public Cliente getCliente(@PathVariable String usuarioName) throws Exception{
+        return clienteService.findCliente(usuarioName);
     }
     @Override
     @PutMapping("/update")

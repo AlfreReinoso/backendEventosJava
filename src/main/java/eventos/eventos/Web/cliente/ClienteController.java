@@ -8,7 +8,7 @@ import java.util.List;
 public interface ClienteController {
     List<Cliente> getClientes() throws Exception;
 
-    Cliente getCliente(long id) throws Exception;
+    Cliente getCliente(String usuarioName) throws Exception;
 
     Cliente updateCliente(Cliente cliente ) throws Exception;
 
