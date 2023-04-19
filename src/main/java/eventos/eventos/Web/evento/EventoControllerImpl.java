@@ -27,6 +27,10 @@ public class EventoControllerImpl implements EventoController{
     public Evento getEventosById(@PathVariable long id)throws Exception{
         return eventoServices.findEventosById(id);
     }
+    @GetMapping("/findEventos/cliente/{id}")
+    public Evento[] getEventosByCliente(@PathVariable long id)throws Exception{
+        return eventoServices.findEventosByCliente(id);
+    }
 
     @PostMapping
     public Evento newEvento(@RequestBody @Valid Evento evento) throws Exception {

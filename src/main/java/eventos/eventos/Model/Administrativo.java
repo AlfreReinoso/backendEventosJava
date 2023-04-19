@@ -16,7 +16,7 @@ import javax.persistence.Table;
 // @AllArgsConstructor
 @Entity
 @Table(name ="administrativos")
-@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
+//@JsonIdentityInfo(generator= ObjectIdGenerators.UUIDGenerator.class, property="@Id")
 
 public class Administrativo extends Usuario{
 

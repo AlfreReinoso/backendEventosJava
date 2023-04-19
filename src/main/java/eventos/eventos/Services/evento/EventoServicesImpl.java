@@ -42,6 +42,10 @@ public class EventoServicesImpl implements EventoService{
         return eventoDao.findById(id).get();
     }
 
+    public Evento[] findEventosByCliente(long id)throws Exception{
+        return eventoDao.findAllByCliente_IdUsuario(id);
+    }
+
     @Override
     public Evento newEvento ( Evento evento )throws Exception{
 
