@@ -20,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ExecutionException;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -47,30 +48,43 @@ public class EventoServicesImpl implements EventoService{
     }
 
     @Override
-    public Evento newEvento ( Evento evento )throws Exception{
+    public Evento newEvento ( Evento evento )throws Exception {
+
+        if (evento.getFechaEvento().isBefore(LocalDate.now())) {
+            throw new Exception("La fecha de Evento ingresada es anterior a la fecha de hoy");
+        }
 
         // Valida que exista un salon
         long idSalonDb = evento.getSalon().getIdSalon();
-        Salon salonDb = salonDao.findById(idSalonDb).orElseThrow(()->new NotFoundException("No existe el salon"));
+        Salon salonDb = salonDao.findById(idSalonDb).orElseThrow(() -> new NotFoundException("No existe el salon"));
 
-        if(!(evento.getCantidadPersonas() < salonDb.getCapacidad())){
-            throw new Exception("La cantidad de personas ingresada es mayor a la capacidad del salon");
-        }
-
-        // Valida que exista un cliente
-        long idClienteDb = evento.getCliente().getIdUsuario();
-        Cliente clienteDb = clienteDao.findById(idClienteDb).orElseThrow(()->new NotFoundException("No existe el Cliente ingresado"));
-
-        // Valida que existan los servicios
-        List<Servicio> serviciosParam = evento.getServicios();
-        if( serviciosParam != null){
-            for(Servicio servicio : serviciosParam){
-                if(servicioDao.findById(servicio.getIdServicio())==null){
-                    throw new Exception("No existe el servicio ingresado");
+        List<Evento> eventos = eventoDao.findAll();
+        for (Evento event : eventos) {
+            if (evento.getFechaEvento() == event.getFechaEvento()) {
+                if (evento.getSalon() == event.getSalon()) {
+                    throw new Exception("Ya existe un evento para ese salon en esa fecha");
                 }
             }
         }
-        // Consultar si es necesario..
+
+            if (!(evento.getCantidadPersonas() < salonDb.getCapacidad())) {
+                throw new Exception("La cantidad de personas ingresada es mayor a la capacidad del salon");
+            }
+
+            // Valida que exista un cliente
+            long idClienteDb = evento.getCliente().getIdUsuario();
+            Cliente clienteDb = clienteDao.findById(idClienteDb).orElseThrow(() -> new NotFoundException("No existe el Cliente ingresado"));
+
+            // Valida que existan los servicios
+            List<Servicio> serviciosParam = evento.getServicios();
+            if (serviciosParam != null) {
+                for (Servicio servicio : serviciosParam) {
+                    if (servicioDao.findById(servicio.getIdServicio()) == null) {
+                        throw new Exception("No existe el servicio ingresado");
+                    }
+                }
+            }
+            // Consultar si es necesario..
         /*evento.setSalon(salonDb);
         evento.setCliente(clienteDb);
         evento.setServicios(serviciosParam);*/
@@ -78,28 +92,42 @@ public class EventoServicesImpl implements EventoService{
         /*if(salonDao.findById(idsalonDb).get() == null){
             throw new Exception("No existe el salon ingresado");
         }*/
-        return eventoDao.save(evento);
-    }
+            return eventoDao.save(evento);
+        }
+
 
     @Override
     public Evento updateEvento(Evento evento) throws Exception {
+
+        if(evento.getFechaEvento().isBefore(LocalDate.now())){
+            throw new Exception("La fecha de Evento ingresada es anterior a la fecha de hoy");
+        }
 
         // Valida que exista un salon
         String nomSalonDb = evento.getSalon().getDenominacion();
         Salon salonDb = salonDao.findSalonByDenominacion(nomSalonDb);
         //.orElseThrow(()->new NotFoundException("No existe el salon"));
 
+        List<Evento> eventoss = eventoDao.findAll();
+        for(Evento event:eventoss){
+            if(evento.getFechaEvento().equals(event.getFechaEvento())){
+                if(evento.getSalon().equals(event.getSalon())){
+                    throw new Exception("Ya existe un evento para ese salon en esa fecha");
+                }
+        }
+
         if(salonDb == null){
             throw new Exception("No existe el nombre del salon");
+        }
+
         }
         if(!(evento.getCantidadPersonas() < salonDb.getCapacidad())){
             throw new Exception("La cantidad de personas ingresada es mayor a la capacidad del salon");
         }
 
         // Valida que exista un cliente
-        String nomClienteDb = evento.getCliente().getApellido();
-        Cliente clienteDb = clienteDao.findClienteByApellido(nomClienteDb);
-        //.orElseThrow(()->new NotFoundException("No existe el Cliente ingresado"));
+        Cliente clienteDb = clienteDao.findById(evento.getCliente().getIdUsuario()).get();
+                //.orElseThrow(()->new NotFoundException("No existe el Cliente ingresado"));
 
         if(clienteDb == null){
             throw new Exception("No existe el cliente");
@@ -121,8 +149,7 @@ public class EventoServicesImpl implements EventoService{
                 }
             }
         }
-        /*evento.setSalon(salonDb);
-        evento.setCliente(clienteDb);*/
+
         evento.setServicios(serviciosToSave);
         return eventoDao.save(evento);
     }
