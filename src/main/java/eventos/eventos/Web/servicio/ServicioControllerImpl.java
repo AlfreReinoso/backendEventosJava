@@ -31,9 +31,9 @@ public class ServicioControllerImpl implements ServicioController {
     }
 
     @Override
-    @GetMapping("/find")
+    @GetMapping("/find/{idServicio}")
     @ResponseStatus(HttpStatus.OK)
-    public Servicio findServicio(@RequestParam(name = "idServicio") int idServicio) throws Exception {
+    public Servicio findServicio(@PathVariable(name = "idServicio") int idServicio) throws Exception {
         return servicioService.findServicio(idServicio);
     }
 

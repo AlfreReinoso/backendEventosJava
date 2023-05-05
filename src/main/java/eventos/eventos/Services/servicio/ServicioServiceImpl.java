@@ -37,6 +37,7 @@ public class ServicioServiceImpl implements ServicioService{
 
     @Override
     public void deleteServicio(int idServicio) throws Exception {
+        servicioDao.DeleteEventoServicios(idServicio);
         servicioDao.deleteById(idServicio);
     }
 }

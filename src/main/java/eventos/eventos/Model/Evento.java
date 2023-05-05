@@ -9,6 +9,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -41,21 +43,17 @@ public class Evento {
     @NotNull
     private Cliente cliente ;// muchos eventos para un cliente
 
-//    @ManyToOne
-//    @JoinColumn(name = "idTipoServicio", nullable = false)
-//    @NotNull
-//    private TipoServicio tipoServicio;
 
     @ManyToOne
     @JoinColumn(name = "idSalon", nullable = false)
     @NotNull
     private Salon salon; // muchos eventos para una sala
 
-    @ManyToMany()
+    @ManyToMany
     @JoinTable(name = "eventos_servicios",
-            joinColumns = @JoinColumn(name = "nroReserva", nullable = false),
-            inverseJoinColumns = @JoinColumn(name = "idServicio", nullable = false)
+            joinColumns = {@JoinColumn(name = "nroReserva", nullable = false)},
+            inverseJoinColumns ={@JoinColumn(name = "idServicio", nullable = false)}
     )
-    private List<Servicio> servicios;
+    private Set<Servicio> servicios;
 
 }

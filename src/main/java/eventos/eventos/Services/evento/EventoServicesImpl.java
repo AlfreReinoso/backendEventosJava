@@ -15,10 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.Assert;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
@@ -76,7 +73,7 @@ public class EventoServicesImpl implements EventoService{
             Cliente clienteDb = clienteDao.findById(idClienteDb).orElseThrow(() -> new NotFoundException("No existe el Cliente ingresado"));
 
             // Valida que existan los servicios
-            List<Servicio> serviciosParam = evento.getServicios();
+            Set<Servicio> serviciosParam = evento.getServicios();
             if (serviciosParam != null) {
                 for (Servicio servicio : serviciosParam) {
                     if (servicioDao.findById(servicio.getIdServicio()) == null) {
@@ -84,14 +81,8 @@ public class EventoServicesImpl implements EventoService{
                     }
                 }
             }
-            // Consultar si es necesario..
-        /*evento.setSalon(salonDb);
-        evento.setCliente(clienteDb);
-        evento.setServicios(serviciosParam);*/
 
-        /*if(salonDao.findById(idsalonDb).get() == null){
-            throw new Exception("No existe el salon ingresado");
-        }*/
+        System.out.println(serviciosParam);
             return eventoDao.save(evento);
         }
 
@@ -134,11 +125,11 @@ public class EventoServicesImpl implements EventoService{
         }
 
         // Valida que existan los servicios
-        List<Servicio> serviciosParam = evento.getServicios();
-        List<Servicio> serviciosToSave= new ArrayList<>();
+        Set<Servicio> serviciosParam = evento.getServicios();
+        Set<Servicio> serviciosToSave= new HashSet<>();
         if( serviciosParam != null){
             for(Servicio servicio : serviciosParam){
-                Servicio varlocal = servicioDao.findByDenominacion(servicio.getDenominacion());
+                Servicio varlocal = servicioDao.findById(servicio.getIdServicio());
                 // System.out.println(varlocal);
 
                 if( varlocal==null
