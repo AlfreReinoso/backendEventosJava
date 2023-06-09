@@ -44,4 +44,11 @@ public class SalonesServicesImpl implements SalonesService{
                 .orElseThrow(() -> new NotFoundException("No existe el salon"));
         salaDao.deleteById(id);
     }
+
+    @Override
+    public void saveImg(String url, Integer idSalon) throws Exception {
+        Salon salonToSave = salaDao.findById(Long.valueOf(idSalon)).get();
+        salonToSave.setUrl(url);
+        salaDao.save(salonToSave);
+    }
 }

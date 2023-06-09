@@ -15,4 +15,6 @@ public interface SalonesService {
     Salon updateSalon(Salon salon) throws Exception;
 
     void deleteById(long id) throws Exception;
+
+    void saveImg(String url, Integer idSalon )throws Exception;
 }

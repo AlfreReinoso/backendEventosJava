@@ -1,6 +1,7 @@
 package eventos.eventos.Web.MediaController;
 
 import eventos.eventos.Services.Imagenes.StorageServices;
+import eventos.eventos.Services.salones.SalonesService;
 import lombok.AllArgsConstructor;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -20,9 +21,10 @@ import java.util.Map;
 public class MediaController {
     private final StorageServices storageServices;
     private final HttpServletRequest httpServletRequest;
+    private final SalonesService salonesService;
 
     @PostMapping("upload")
-    public Map<String, String> uploadFile(@RequestParam("file")MultipartFile multipartFile){
+    public Map<String, String> uploadFile(@RequestParam("file")MultipartFile multipartFile, Integer idSalon) throws Exception {
         String path = storageServices.store(multipartFile);
         String host = httpServletRequest.getRequestURL().toString().replace(httpServletRequest.getRequestURI(),"");
         String url = ServletUriComponentsBuilder
@@ -30,6 +32,7 @@ public class MediaController {
                 .path("/media/")
                 .path(path)
                 .toUriString();
+        salonesService.saveImg(url,idSalon);
         return Map.of("url", url);
     }
 

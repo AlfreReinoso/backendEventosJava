@@ -33,4 +33,7 @@ public class Salon {
     @Column
     private double costoPorDia;
 
+    @Column
+    private String url;
+
 }
