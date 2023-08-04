@@ -37,4 +37,7 @@ public abstract class Usuario {
     @Column
     private String usuarioName;
 
+    @Enumerated(EnumType.STRING)
+    private TipoUsuario tipoUsuario;
+
 }
